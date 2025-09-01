@@ -1,4 +1,94 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #222222;
+    color: white;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding: 20px;
+}
+
+.top-menu {
+    background-color: #1d1d1d;
+}
+
+.top-menu a {
+    color: #fff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.top-menu .nav-item.active a {
+    color: #f39c12;
+}
+
+.top_link {
+    color: #fff;
+}
+
+.top_link:hover {
+    color: #dddbdb;
+    cursor: pointer;
+}
+
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: #f39c12;
+    border: 1px solid #f39c12;
+    border-radius: 0.25rem;
+    color: #222;
+}
+
+.navbar-toggler.collapsed {
+    background-color: #444;
+    border: 1px solid #222;
+    color: #fff;
+}
+
+
+.side-content {
+    width: 250px;
+
+    img {
+        height: 30px;
+        margin-right: 10px;
+    }
+}
+
+
+:root {
+    @include mat.toolbar-overrides((container-background-color:var(--mat-sys-primary-container),
+            container-text-color: rgb(255, 255, 255),
+        ));
+}

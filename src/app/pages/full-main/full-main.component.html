@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+    <ng-container>
+        <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+            aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Data Logger</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>person</mat-icon>
+        </button>
+    </ng-container>
+</mat-toolbar>
+
+<mat-drawer-container autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 60px;">
+    <mat-drawer #drawer mode="over" class="toolbar" style="width: 250px;">
+        <mat-action-list class="side-content">
+            <button (click)="drawer.toggle()" mat-list-item>
+                <div class="row">
+                    <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/dashboard.png">
+                    </div>
+                    <div class="col-10 pt-1">Dashboard</div>
+                </div>
+            </button>
+        </mat-action-list>
+    </mat-drawer>
+    <div style="margin-top: 20px;">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>dashboard.png

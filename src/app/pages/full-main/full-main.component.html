@@ -17,14 +17,28 @@
         <mat-action-list class="side-content">
             <button (click)="drawer.toggle()" mat-list-item>
                 <div class="row">
+                    <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/logger.png">
+                    </div>
+                    <div class="col-10 pt-1">Logger</div>
+                </div>
+            </button>
+            <button (click)="drawer.toggle()" mat-list-item>
+                <div class="row">
+                    <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/race.png">
+                    </div>
+                    <div class="col-10 pt-1">รายการแข่ง ทั้งหมด</div>
+                </div>
+            </button>
+            <button (click)="drawer.toggle()" mat-list-item>
+                <div class="row">
                     <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/dashboard.png">
                     </div>
-                    <div class="col-10 pt-1">Dashboard</div>
+                    <div class="col-10 pt-1">เพิ่มรายการ</div>
                 </div>
             </button>
         </mat-action-list>
     </mat-drawer>
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 20px;" class="container">
         <router-outlet></router-outlet>
     </div>
 </mat-drawer-container>dashboard.png

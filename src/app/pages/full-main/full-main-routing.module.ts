@@ -9,6 +9,15 @@ const routes: Routes = [
   }, {
     path: 'dashboard',
     loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent)
+  }, {
+    path: 'event',
+    loadComponent: () => import('./event/event.component').then(m => m.EventComponent)
+  }, {
+    path: 'race',
+    loadComponent: () => import('./race/race.component').then(m => m.RaceComponent)
+  }, {
+    path: 'logger',
+    loadComponent: () => import('./logger/logger.component').then(m => m.LoggerComponent)
   }
 ];
 

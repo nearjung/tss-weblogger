@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, model, OnInit, signal } from '@angular/core';
 import {
   MatDialog,
   MatDialogActions,
@@ -16,13 +16,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { JsonPipe } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-add-event',
   imports: [MatButtonModule, MatDialogActions, MatDialogClose,
     MatDialogTitle, MatDialogContent, MatTabsModule,
     FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule,
-    MatDatepickerModule],
+    MatDatepickerModule, MatCheckboxModule, MatRadioModule],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './add-event.component.html',
@@ -32,19 +34,30 @@ export class AddEventComponent implements OnInit {
   NameTab: string = "เพิ่ม รายการแข่ง";
 
   toppings = new FormControl('');
+  dateSessionStart = new FormControl(new Date());
+  dateSessionEnd = new FormControl(new Date());
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   readonly dialogRef = inject(MatDialogRef<AddEventComponent>);
   private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
   private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE));
+
+  readonly freePractice = model(false);
+  readonly qualifying = model(false);
+  readonly race1 = model(false);
+  readonly race2 = model(false);
+  readonly race3 = model(false);
+  readonly race4 = model(false);
+  readonly race5 = model(false);
+
   ngOnInit() {
     this._locale.set('fr');
     this._adapter.setLocale(this._locale());
     // this.updateCloseButtonLabel('Fermer le calendrier');
   }
   readonly range = new FormGroup({
-      start: new FormControl<Date | null>(null),
-      end: new FormControl<Date | null>(null),
+      start: new FormControl<Date | null>(new Date()),
+      end: new FormControl<Date | null>(new Date()),
   });
 
 }

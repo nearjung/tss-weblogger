@@ -37,7 +37,10 @@ export class FullMainComponent implements OnInit {
   navigateToAddSeason(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(AddEventComponent
       , {
-      width: '760px',
+        width: "100vw",
+        height: "100vh",
+        maxWidth: "750px",
+        maxHeight: "600px",
       enterAnimationDuration,
       exitAnimationDuration,
     }

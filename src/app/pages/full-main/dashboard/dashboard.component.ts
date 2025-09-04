@@ -1,11 +1,40 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [MatCardModule, MatChipsModule, MatProgressBarModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
+  items: any[] = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+  ]
+  constructor(private router: Router, private route: ActivatedRoute) {
+
+  }
+  ngOnInit() {
+    // this.loadEvent();
+  }
+
+  navigateToLoggerDetail() {
+    this.router.navigate(['/pages', 'logger']);
+    // this.router.navigate(['logger'], { relativeTo: this.route });
+  }
 }

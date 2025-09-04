@@ -16,21 +16,8 @@ export class EventComponent implements OnInit {
     // this.loadEvent();
   }
 
-  navigateToDashboardList(){
-    this.router.navigate(['/dashboard']);
-  }
-
-  navigateToEventList(){
-    this.router.navigate(['/event']);
-  }
-
-  navigateToLoggerList(){
-    this.router.navigate(['/logger']);
-  }
-
-
-  navigateToRaceList(){
-    this.router.navigate(['/race']);
+  navigateToRace(){
+    this.router.navigate(['/pages', 'race']);
   }
 
 }

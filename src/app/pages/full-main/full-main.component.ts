@@ -21,4 +21,15 @@ export class FullMainComponent implements OnInit {
     // this.loadEvent();
   }
 
+  navigateToDashboard() {
+    this.router.navigate(['/pages', 'dashboard']);
+  }
+
+  navigateToListAllSeason() {
+    this.router.navigate(['/pages', 'season']);
+  }
+
+  navigateToAddSeason() {
+    this.router.navigate(['/pages', 'add-event']);
+  }
 }

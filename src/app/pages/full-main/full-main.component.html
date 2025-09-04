@@ -15,21 +15,21 @@
 <mat-drawer-container autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 60px;">
     <mat-drawer #drawer mode="over" class="toolbar" style="width: 250px;">
         <mat-action-list class="side-content">
-            <button (click)="drawer.toggle()" mat-list-item>
+            <button (click)="drawer.toggle(); navigateToDashboard()" mat-list-item>
                 <div class="row">
                     <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/logger.png">
                     </div>
                     <div class="col-10 pt-1">Logger</div>
                 </div>
             </button>
-            <button (click)="drawer.toggle()" mat-list-item>
+            <button (click)="drawer.toggle(); navigateToListAllSeason()" mat-list-item>
                 <div class="row">
                     <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/race.png">
                     </div>
                     <div class="col-10 pt-1">รายการแข่ง ทั้งหมด</div>
                 </div>
             </button>
-            <button (click)="drawer.toggle()" mat-list-item>
+            <button (click)="drawer.toggle(); navigateToAddSeason()" mat-list-item>
                 <div class="row">
                     <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/dashboard.png">
                     </div>
@@ -38,7 +38,7 @@
             </button>
         </mat-action-list>
     </mat-drawer>
-    <div style="margin-top: 20px;" class="container">
+    <!-- <div style="margin-top: 20px;" class="container"> -->
         <router-outlet></router-outlet>
-    </div>
+    <!-- </div> -->
 </mat-drawer-container>dashboard.png

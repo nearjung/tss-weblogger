@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -10,14 +10,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CarLogger } from '../../../../../public/models/car-logger.model';
 import { Subscription } from 'rxjs';
-
+import { ApexOptions, ChartComponent, NgxApexchartsModule } from 'ngx-apexcharts';
 @Component({
   selector: 'app-logger',
-  imports: [ FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule, MatDividerModule, MatIconModule, MatToolbarModule],
+  imports: [ FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule
+    , ReactiveFormsModule, MatButtonModule, MatDividerModule, MatIconModule
+    , MatToolbarModule, NgxApexchartsModule],
   templateUrl: './logger.component.html',
   styleUrl: './logger.component.scss'
 })
-export class LoggerComponent implements OnInit {
+export class LoggerComponent implements OnInit , OnDestroy {
+
+  @ViewChild('chart') chart!: ChartComponent;
 
   showRoutePath: boolean = true;
   toppings = new FormControl('');
@@ -35,16 +39,85 @@ export class LoggerComponent implements OnInit {
   private subscriptions: Subscription[] = [];
   areaSmoothChart: Partial<ApexOptions>;
   areaSmoothChartMaps: Partial<ApexOptions>;
+  allLogger: CarLogger[] = [];
 
+  constructor(private router: Router, private route: ActivatedRoute,
+    // private dataProcessingService: DataProcessingService,
+    // private webSocketService: WebSocketService
+  ) {
+    // const perms = this.authService.getPermissions();
+    // this.canEditMatch = perms.canEditMatch;
+    // this.canAddRacer = perms.canAddRacer;
+    this.areaSmoothChart = {
+      series: [
+        {
+          name: 'series1',
+          data: []
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'area'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      xaxis: {
+        categories: []
+      },
+      tooltip: {
+        x: {
+          format: 'HH:mm:ss'
+        }
+      }
+    };
 
-  constructor(private router: Router, private route: ActivatedRoute) {  }
+    this.areaSmoothChartMaps = {
+      series: [
+        {
+          name: 'Route Path',
+          data: []
+        }
+      ],
+      chart: {
+        type: 'line',
+        height: 400,
+        zoom: { enabled: true }
+      },
+      xaxis: {
+        type: 'numeric',
+        title: { text: 'Longitude' }
+      },
+      yaxis: {
+        title: { text: 'Latitude' }
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 3
+      }
+    };
+  }
+
   ngOnInit() {
     // this.loadEvent();
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscriptions
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+    // this.wsSubscriptions.forEach(sub => sub.unsubscribe());
+
+    // // ปิด WebSocket connection
+    // this.webSocketService.disconnect();
   }
 
   navigateToDashboard(){
     this.router.navigate(['/pages', 'dashboard']);
   }
+
 
   // navigateToInsertOrUpdate(){
   //   this.router.navigate(['/pages', 'logger/add-logger']);
@@ -58,6 +131,14 @@ export class LoggerComponent implements OnInit {
     const millis = Math.round((secRaw % 1) * 1000).toString().padStart(3, '0');
 
     return `${hour}:${minute}:${second}:${millis}`;
+  }
+
+  formatToTimeLabel(timeStr: string): string {
+    const hour = timeStr.slice(0, 2);
+    const minute = timeStr.slice(2, 4);
+    const second = Math.floor(parseFloat(timeStr.slice(4))).toString().padStart(2, '0');
+
+    return `${hour}:${minute}:${second}`;
   }
 
 
@@ -85,6 +166,7 @@ export class LoggerComponent implements OnInit {
         data: dataHeight
       }
     ];
+
 
     this.areaSmoothChart.xaxis = {
       categories: recentLogs.map(log => this.formatToTimeLabel(log.time))
@@ -246,5 +328,14 @@ export class LoggerComponent implements OnInit {
     const mapData = this.allLogger.slice(-1000);
     this.updateMapWithPageData(mapData);
   }
+
+  onMouseEnterZoom() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  onMouseLeaveZoom() {
+    document.body.style.overflow = 'auto';
+  }
+
 
 }

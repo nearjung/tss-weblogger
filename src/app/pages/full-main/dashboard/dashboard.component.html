@@ -1,41 +1,42 @@
+<div style="margin-top: 20px;" class="container">
+  <div class="row">
 
-<div class="row">
+  @for (item of items; track $index) {
+    <div class="col-6 col-sm-4 col-lg-3 mt-3" (click)="navigateToLoggerDetail()">
+      <mat-card class="logger-card" appearance="outlined"  >
+        <!-- <mat-card-header>
+          <mat-card-title>Chihuahua</mat-card-title>
+        </mat-card-header> -->
+        <mat-card-content>
+          <div class="row">
+            <div class="col-12">
+              <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">No.1</span></h3>
+            </div>
+            <div class="col-12">
+              <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">TSS01</span></h3>
+            </div>
+          </div>
 
-@for (item of items; track $index) {
-  <div class="col-6 col-sm-4 col-lg-3 mt-3" (click)="navigateToLoggerDetail()">
-    <mat-card class="logger-card" appearance="outlined"  >
-      <!-- <mat-card-header>
-        <mat-card-title>Chihuahua</mat-card-title>
-      </mat-card-header> -->
-      <mat-card-content>
-        <div class="row">
-          <div class="col-12">
-            <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">No.1</span></h3>
+          <hr style="margin: 0.3rem 0;">
+          <div class="row">
+            <div class="col-6 pe-0">
+              <span class="badge text-bg-secondary w-100">Offline</span>
+            </div>
+            <div class="col-6 ps-1">
+              <span class="badge text-bg-secondary w-100">TSS01</span>
+            </div>
           </div>
-          <div class="col-12">
-            <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">TSS01</span></h3>
-          </div>
-        </div>
 
-        <hr style="margin: 0.3rem 0;">
-        <div class="row">
-          <div class="col-6 pe-0">
-            <span class="badge text-bg-secondary w-100">Offline</span>
-          </div>
-          <div class="col-6 ps-1">
-            <span class="badge text-bg-secondary w-100">TSS01</span>
-          </div>
-        </div>
+        </mat-card-content>
+        <!-- <mat-card-footer class="logger-card-footer">
+          <mat-chip-set aria-label="Chihuahua traits">
+            <mat-chip class="w-50">charming</mat-chip>
+            <mat-chip class="w-50">graceful</mat-chip>
+          </mat-chip-set>
+        </mat-card-footer> -->
+      </mat-card>
+    </div>
+  }
 
-      </mat-card-content>
-      <!-- <mat-card-footer class="logger-card-footer">
-        <mat-chip-set aria-label="Chihuahua traits">
-          <mat-chip class="w-50">charming</mat-chip>
-          <mat-chip class="w-50">graceful</mat-chip>
-        </mat-chip-set>
-      </mat-card-footer> -->
-    </mat-card>
   </div>
-}
-
 </div>

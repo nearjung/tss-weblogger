@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-season',
@@ -9,9 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SeasonComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-
+  constructor(private router: Router, private route: ActivatedRoute
+    ,private http: HttpClient) {
   }
+
   ngOnInit() {
     // this.loadEvent();
   }

@@ -27,6 +27,9 @@ const routes: Routes = [
   }, {
     path: 'add-event',
     loadComponent: () => import('./add-event/add-event.component').then(m => m.AddEventComponent)
+  }, {
+    path: 'setting-logger',
+    loadComponent: () => import('./setting-logger/setting-logger.component').then(m => m.SettingLoggerComponent)
   },
 ];
 

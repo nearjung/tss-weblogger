@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CarLogger } from '../../../../../public/models/car-logger.model';
 import { Subscription } from 'rxjs';
 import { ApexOptions, ChartComponent, NgxApexchartsModule } from 'ngx-apexcharts';
+import { MatChipsModule } from '@angular/material/chips';
 @Component({
   selector: 'app-logger',
   imports: [ FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule

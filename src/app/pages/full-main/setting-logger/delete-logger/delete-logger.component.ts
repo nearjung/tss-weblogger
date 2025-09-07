@@ -3,18 +3,18 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import {
-  MatDialog,
-  MatDialogActions,
+  MAT_DIALOG_DATA,
   MatDialogClose,
   MatDialogContent,
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { DialogLoggerData } from '../setting-logger.component';
 
 @Component({
   selector: 'app-delete-logger',
-  imports: [MatButtonModule, MatDialogActions, MatDialogClose,
-    MatDialogTitle, MatDialogContent, FormsModule],
+  imports: [MatButtonModule, MatDialogClose, MatDialogContent,
+    MatDialogTitle, FormsModule],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './delete-logger.component.html',
@@ -22,8 +22,18 @@ import {
 })
 export class DeleteLoggerComponent implements OnInit {
 
-  ngOnInit() {
+  readonly dialogRef = inject(MatDialogRef<DeleteLoggerComponent>);
+  readonly data = inject<DialogLoggerData>(MAT_DIALOG_DATA);
+  logger_id = this.data.loggerId;
 
+  ngOnInit() {
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onSubmit(){
+    console.log(this.logger_id)
+  }
 }

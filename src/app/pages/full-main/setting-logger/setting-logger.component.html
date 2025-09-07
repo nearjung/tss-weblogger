@@ -11,23 +11,22 @@
 
   <div class="row">
 
-  @for (item of items; track $index) {
+  @for (logger of allLoggers; track $index) {
     <div class="col-6 col-sm-4 col-lg-3 mt-3">
       <mat-card class="logger-card" appearance="outlined"  >
         <mat-card-content>
           <div class="row">
             <div class="col-12">
-              <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">No.1</span></h3>
+              <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">No.{{logger.carNumber}}</span></h3>
             </div>
             <div class="col-12">
-              <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">TSS01</span></h3>
+              <h3 style="margin: 0.5rem 0 0 0;"><span class="badge text-bg-secondary w-100">{{logger.loggerId}}</span></h3>
             </div>
           </div>
 
-
           <hr style="margin: 0.3rem 0;">
           <div class="row justify-content-center">
-            <div class="col-6 pe-0 d-flex justify-content-center">
+            <div class="col-6 mt-1 pe-0 d-flex justify-content-center">
               <button type="button" class="btn btn-secondary w-100 ">
                 Offline
               </button>
@@ -35,26 +34,25 @@
                 <mat-icon>settings</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="settingLogger('0ms','0ms')">
+                <button mat-menu-item (click)="settingLogger('0ms','0ms', logger.loggerId)">
                   <mat-icon>settings</mat-icon>
                   <span>ตั้งค่า Logger</span>
                 </button>
-                <button mat-menu-item (click)="deleteLogger('0ms','0ms')">
+                <button mat-menu-item (click)="deleteLogger('0ms','0ms', logger.loggerId)">
                   <mat-icon>delete</mat-icon>
                   <span>ลบ Logger</span>
                 </button>
               </mat-menu>
-              <!-- @if(item.numberWarning > 0){
-                <div matBadge="4" matBadgeOverlap="false" class="demo-section"  style="width: 27px;">
-                  <img style="border-radius: 0; height: 40px;" src="images/icon/image8.png">
-                </div>
-              }
-              @else {
-                <div matBadgeOverlap="false" class="demo-section"  style="width: 33px;">
-                  <img style="border-radius: 0; height: 40px; margin-left: 10px;" src="images/icon/image6.png">
-                </div>
-              } -->
-
+                <!-- @if(item.numberWarning > 0){
+                  <div matBadge="4" matBadgeOverlap="false" class="demo-section"  style="width: 27px;">
+                    <img style="border-radius: 0; height: 40px;" src="images/icon/image8.png">
+                  </div>
+                }
+                @else {
+                  <div matBadgeOverlap="false" class="demo-section"  style="width: 33px;">
+                    <img style="border-radius: 0; height: 40px; margin-left: 10px;" src="images/icon/image6.png">
+                  </div>
+                } -->
             </div>
           </div>
 
@@ -65,3 +63,5 @@
 
   </div>
 </div>
+
+

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import {
+  MAT_DIALOG_DATA,
   MatDialog,
   MatDialogActions,
   MatDialogClose,
@@ -12,6 +13,7 @@ import {
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DialogLoggerData } from '../setting-logger.component';
 
 @Component({
   selector: 'app-edit-logger',
@@ -23,9 +25,17 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './edit-logger.component.scss'
 })
 export class EditLoggerComponent implements OnInit {
+  readonly dialogRef = inject(MatDialogRef<EditLoggerComponent>);
+  readonly data = inject<DialogLoggerData>(MAT_DIALOG_DATA);
+  car_number = this.data.carNumber;
+  logger_id = this.data.loggerId;
+  name = this.data.name;
 
   ngOnInit() {
 
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

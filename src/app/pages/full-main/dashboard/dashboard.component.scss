@@ -19,3 +19,18 @@ mat-icon {
   margin: 8px 0;
   display: block;
 }
+
+.logger-card.alert {
+  padding: 0;
+  border: 2px solid #EF4444;     // เส้นขอบแดง
+  background-color: #611515;     // พื้นหลังแดงเข้ม
+  box-shadow: none;              // (ออปชัน) ตัดเงาเพื่อให้เส้นขอบเด่น
+  color: #fff;                   // (ออปชัน) ให้ตัวอักษรอ่านง่ายบนพื้นหลังเข้ม
+}
+
+.logger-card.warning {
+  padding: 0;
+  border: 2px solid #D88C0C;     // เส้นขอบแดง
+  box-shadow: none;              // (ออปชัน) ตัดเงาเพื่อให้เส้นขอบเด่น
+  color: #fff;                   // (ออปชัน) ให้ตัวอักษรอ่านง่ายบนพื้นหลังเข้ม
+}

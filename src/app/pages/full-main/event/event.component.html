@@ -12,21 +12,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-center" (click)="navigateToRace()">TSS Bangsaen Grand Prix 2025</td>
-            <td class="text-center" >2 - 6 Jun 2025</td>
-            <td class="text-center" >สนามบางแสน สตรีท เซอร์กิต</td>
-            <td class="text-center">
-              <div class="row d-flex justify-content-center">
-                <div class="col-2">
-                  <img style="border-radius: 0; height: 24px;" src="images/icon/icon_edit.png" (click)="openEdit('0ms', '0ms')">
+          @for (eventList of allEvent; track eventList) {
+            <tr>
+              <td class="text-center" (click)="navigateToRace()">{{ eventList.eventName }}</td>
+              <td class="text-center">
+                {{ eventList.eventStart| dateRange:eventList.eventEnd :'en-GB' }}
+              </td>
+              <!-- <td class="text-center" >2 - 6 Jun 2025</td> -->
+              <td class="text-center" >{{ eventList.circuitName }}</td>
+              <td class="text-center">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-2">
+                    <img style="border-radius: 0; height: 24px;" src="images/icon/icon_edit.png" (click)="openEdit('0ms', '0ms', eventList.eventId)">
+                  </div>
+                  <div class="col-2">
+                    <img style="border-radius: 0; height: 24px;" src="images/icon/icon_delete.png" (click)="openDelete('0ms', '0ms', eventList.eventId)">
+                  </div>
                 </div>
-                <div class="col-2">
-                  <img style="border-radius: 0; height: 24px;" src="images/icon/icon_delete.png" (click)="openDelete('0ms', '0ms')">
-                </div>
-              </div>
-            </td>
-          </tr>
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
 

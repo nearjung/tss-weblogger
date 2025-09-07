@@ -25,7 +25,6 @@ export class LoggerComponent implements OnInit , OnDestroy {
   @ViewChild('chart') chart!: ChartComponent;
 
   showRoutePath: boolean = true;
-  toppings = new FormControl('');
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   svgPoints = '';

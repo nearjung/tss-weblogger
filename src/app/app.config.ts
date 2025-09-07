@@ -15,12 +15,12 @@ export const appConfig: ApplicationConfig = {
 export const APP_CONFIG = {
   // API Configuration
   API: {
-    HOST: 'http://localhost:7009',
-    BASE_URL: 'http://localhost:7009/api',
-    HOST_SERVER: 'http://localhost:7009',
+    HOST: 'http://localhost:7001',
+    BASE_URL: 'http://localhost:7001/api',
+    HOST_SERVER: 'http://localhost:7001',
     BASE_URL_SERVER: 'http://43.228.85.167:7001/api',
 
-    URL_SOCKET_LOCAL: 'ws://localhost:7009/ws',
+    URL_SOCKET_LOCAL: 'ws://localhost:7001/ws',
     URL_SOCKET_SERVER: 'ws://43.228.85.167:7001',
 
     ENDPOINTS: {

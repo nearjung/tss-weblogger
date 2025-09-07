@@ -6,6 +6,6 @@
 </mat-dialog-content> -->
 <mat-dialog-actions >
   <button type="button" class="btn btn-danger" matButton mat-dialog-close>ยกเลิก</button>
-  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>ยืนยัน</button>
+  <button type="button" class="btn btn-success" (click)="onSubmit()"  matButton mat-dialog-close cdkFocusInitial>ยืนยัน</button>
 </mat-dialog-actions>
 

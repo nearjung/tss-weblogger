@@ -58,25 +58,24 @@ export class EventService {
   private matchList: Match[] = [];
   constructor(private http: HttpClient) {  }
 
-
     getMatch(): Observable<Match[]> {
-    const matchesUrl = getApiUrl(APP_CONFIG.API.ENDPOINTS.GET_MATCHES);
-    return this.http.get<ApiMatchResponse>(matchesUrl).pipe(
-      map(response => {
-        // Map API data to Match interface
-        this.matchList = response.data.map((apiData) => ({
-          id: apiData.id,
-          name: apiData.name,
-          statusName: "",
-          tier: apiData.tier,
-          raceCount: apiData.race_count.toString(),
-          event: apiData.event,
-          startDate: new Date(apiData.start_date),
-          endDate: new Date(apiData.end_date),
-          trackImage: "assets/map-race/map-pangsan.png"
-        }));
-        return this.matchList;
-      })
-    );
-  }
+      const matchesUrl = getApiUrl(APP_CONFIG.API.ENDPOINTS.GET_MATCHES);
+      return this.http.get<ApiMatchResponse>(matchesUrl).pipe(
+        map(response => {
+          // Map API data to Match interface
+          this.matchList = response.data.map((apiData) => ({
+            id: apiData.id,
+            name: apiData.name,
+            statusName: "",
+            tier: apiData.tier,
+            raceCount: apiData.race_count.toString(),
+            event: apiData.event,
+            startDate: new Date(apiData.start_date),
+            endDate: new Date(apiData.end_date),
+            trackImage: "assets/map-race/map-pangsan.png"
+          }));
+          return this.matchList;
+        })
+      );
+    }
 }

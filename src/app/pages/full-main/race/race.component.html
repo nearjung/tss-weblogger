@@ -1,13 +1,10 @@
 <div style="margin-top: 20px;" class="container">
   <div class="row">
+    <mat-chip-set aria-label="Fish selection">
       <div class="col-6 col-lg-3">
-      <form class="mat-input-form">
-        <mat-form-field class="w-100">
-          <mat-label>Event</mat-label>
-          <input matInput disabled value="TSS Bangsaen Grand Prix 2025 ">
-        </mat-form-field>
-      </form>
-    </div>
+          <mat-chip disabled style="width: auto;">TSS Bangsaen Grand Prix 2025</mat-chip>
+      </div>
+    </mat-chip-set>
   </div>
 
   <div class="row">
@@ -24,7 +21,27 @@
           </tr>
         </thead>
         <tbody>
+        @for (raceData of allRace; track raceData) {
           <tr>
+            <td class="text-center" (click)="navigateToDashboard(raceData.raceMatchId)">{{raceData.raceName}}</td>
+            <td class="text-center" >{{ raceData.raceSegment }}</td>
+            <td class="text-center" >{{ raceData.raceClass }}</td>
+            <td class="text-center" >{{ raceData.raceSession }}</td>
+            <td class="text-center">{{ raceData.raceStart | date:'dd/MM/yyyy HH:mm' }}
+            <td class="text-center">
+              <div class="row d-flex justify-content-center">
+                <div class="col-2">
+                  <img style="border-radius: 0; height: 24px;" src="images/icon/icon_edit.png" (click)="openEdit('0ms', '0ms', raceData.raceMatchId)">
+                </div>
+                <div class="col-2">
+                  <img style="border-radius: 0; height: 24px;" src="images/icon/icon_delete.png" (click)="openRaceDelete('0ms', '0ms', raceData.raceMatchId)">
+                </div>
+              </div>
+            </td>
+          </tr>
+        }
+          <!-- <tr>
+
             <td class="text-center" (click)="navigateToDashboard()">Thailand Super Pickup D2</td>
             <td class="text-center" >PickUp</td>
             <td class="text-center" >Class C</td>
@@ -40,7 +57,7 @@
                 </div>
               </div>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
 

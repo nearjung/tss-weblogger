@@ -11,7 +11,6 @@ import { MatDrawer, MatDrawerContainer } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { AsyncPipe } from '@angular/common';
 import { MaterialModule } from '../../material.module';
-
 @Component({
   selector: 'app-full-main',
   standalone: true,
@@ -19,8 +18,7 @@ import { MaterialModule } from '../../material.module';
   styleUrl: './full-main.component.scss',
   imports: [
     MatToolbarModule, MatIcon, MatDrawerContainer, MatDrawer, MatActionList, MaterialModule,
-    RouterOutlet, MatButtonModule,
-    AsyncPipe,
+    RouterOutlet, MatButtonModule,    AsyncPipe
   ],
 })
 export class FullMainComponent implements OnInit {
@@ -44,7 +42,7 @@ export class FullMainComponent implements OnInit {
   navigateToListSettingLogger() { this.router.navigate(['/pages', 'setting-logger']); }
 
   navigateToAddSeason(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(AddEventComponent, {
+       const dialogRef = this.dialog.open(AddEventComponent, {
       width: '100vw', maxWidth: '750px',
       enterAnimationDuration, exitAnimationDuration,
     });

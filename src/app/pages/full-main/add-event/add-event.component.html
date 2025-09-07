@@ -17,6 +17,14 @@
 
             </div>
           </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-end mt-2">
+                  <button type="button" class="btn btn-danger" matButton mat-dialog-close>ยกเลิก</button>
+                  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>ยืนยัน</button>
+              </div>
+            </div>
+          </div>
         </div>
       </mat-tab>
       <mat-tab label="เพิ่ม Event">
@@ -89,6 +97,14 @@
                 </form>
               </div>
 
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-end mt-2">
+                  <button type="button" class="btn btn-danger" matButton mat-dialog-close>ยกเลิก</button>
+                  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>ยืนยัน</button>
+              </div>
             </div>
           </div>
         </div>
@@ -170,14 +186,48 @@
             <div class="row mt-3">
               <div class="col-12"><p class="h6 text-light">ตัวเลือกสร้าง Session</p></div>
               <div class="col-2">
-                <section class="example-section" >
-                  <mat-checkbox class="example-margin text-light" [(ngModel)]="freePractice">Free Practice</mat-checkbox>
-                  <mat-checkbox class="example-margin text-light" [(ngModel)]="qualifying">Qualifying</mat-checkbox>
-                  <mat-checkbox class="example-margin text-light" [(ngModel)]="race1">Race 1</mat-checkbox>
-                  <mat-checkbox class="example-margin text-light" [(ngModel)]="race2">Race 2</mat-checkbox>
-                  <mat-checkbox class="example-margin text-light" [(ngModel)]="race3">Race 3</mat-checkbox>
-                  <mat-checkbox class="example-margin text-light" [(ngModel)]="race4">Race 4</mat-checkbox>
-                  <mat-checkbox class="example-margin text-light" [(ngModel)]="race5">Race 5</mat-checkbox>
+                <section class="example-section">
+                  <mat-checkbox class="example-margin text-light"
+                    [(ngModel)]="freePractice"
+                    (change)="onToggleSession('freePractice', $event.checked)">
+                    Free Practice
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin text-light"
+                    [(ngModel)]="qualifying"
+                    (change)="onToggleSession('qualifying', $event.checked)">
+                    Qualifying
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin text-light"
+                    [(ngModel)]="race1"
+                    (change)="onToggleSession('race1', $event.checked)">
+                    Race 1
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin text-light"
+                    [(ngModel)]="race2"
+                    (change)="onToggleSession('race2', $event.checked)">
+                    Race 2
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin text-light"
+                    [(ngModel)]="race3"
+                    (change)="onToggleSession('race3', $event.checked)">
+                    Race 3
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin text-light"
+                    [(ngModel)]="race4"
+                    (change)="onToggleSession('race4', $event.checked)">
+                    Race 4
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin text-light"
+                    [(ngModel)]="race5"
+                    (change)="onToggleSession('race5', $event.checked)">
+                    Race 5
+                  </mat-checkbox>
                 </section>
               </div>
               <div class="col-10 ">
@@ -191,7 +241,34 @@
                           <th class="text-center" style="width: 35%;">วันที่จบ Session</th>
                         </tr>
                       </thead>
-                      <tbody>
+                       <tbody>
+                          @for (row of selectedSessions; track row.key) {
+                            <tr>
+                              <td class="text-center">{{ row.label }}</td>
+                              <td class="text-center">
+                                <input
+                                  type="datetime-local"
+                                    [value]="toInput(row.start)"
+                                    step="60"
+                                    (change)="onStartChange(row, $event)" />
+                              </td>
+                              <td class="text-center">
+                                <input
+                                  type="datetime-local"
+                                    [value]="toInput(row.end)"
+                                    [min]="toInput(row.start)"
+                                    step="60"
+                                    (change)="onEndChange(row, $event)" />
+                              </td>
+                            </tr>
+                          }
+                          @empty {
+                            <tr>
+                              <td colspan="3" class="text-center text-muted">ยังไม่ได้เลือก Session</td>
+                            </tr>
+                          }
+                        </tbody>
+                      <!-- <tbody>
                         <tr>
                           <td class="text-center" >
                             Free Practice
@@ -228,10 +305,18 @@
                             [min]="dateSessionStart" />
                           </td>
                         </tr>
-                      </tbody>
+                      </tbody> -->
                     </table>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-end mt-2">
+                  <button type="button" class="btn btn-danger" matButton mat-dialog-close>ยกเลิก</button>
+                  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>ยืนยัน</button>
               </div>
             </div>
           </div>
@@ -240,7 +325,7 @@
   </mat-tab-group>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<!-- <mat-dialog-actions>
   <button type="button" class="btn btn-danger" matButton mat-dialog-close>close</button>
   <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>submit</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->

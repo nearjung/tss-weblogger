@@ -11,9 +11,9 @@
                   <mat-form-field class="w-100">
                     <mat-label>เลือก รายการ</mat-label>
                     <!-- <input matInput class="text-center" value="Thailand Super Pickup D2"> -->
-                      <mat-select [formControl]="toppings">
-                        @for (topping of toppingList; track topping) {
-                          <mat-option [value]="topping">{{topping}}</mat-option>
+                      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="seasonId">
+                        @for (seasons of seasonList; track seasons) {
+                          <mat-option [value]="seasons.value">{{seasons.name}}</mat-option>
                         }
                       </mat-select>
                   </mat-form-field>
@@ -24,9 +24,9 @@
                   <mat-form-field class="w-100">
                     <mat-label>เลือก Event</mat-label>
                     <!-- <input matInput class="text-center" value="Thailand Super Pickup D2"> -->
-                      <mat-select [formControl]="toppings">
-                        @for (topping of toppingList; track topping) {
-                          <mat-option [value]="topping">{{topping}}</mat-option>
+                      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="eventId">
+                        @for (events of eventList; track events) {
+                          <mat-option [value]="events.value">{{events.name}}</mat-option>
                         }
                       </mat-select>
                   </mat-form-field>
@@ -41,7 +41,7 @@
                 <form class="mat-input-form">
                   <mat-form-field class="w-100">
                   <mat-label>ชื่อ Race</mat-label>
-                    <input matInput class="text-center" value="Thailand Super Pickup D2">
+                    <input matInput class="text-center" [ngModelOptions]="{standalone: true}" [(ngModel)]="raceName">
                   </mat-form-field>
                 </form>
               </div>
@@ -50,9 +50,9 @@
                 <form class="mat-input-form">
                   <mat-form-field class="w-100">
                   <mat-label>รุ่น</mat-label>
-                      <mat-select [formControl]="toppings">
-                        @for (topping of toppingList; track topping) {
-                          <mat-option [value]="topping">{{topping}}</mat-option>
+                      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="segmentValue">
+                        @for (segment of raceSegment; track segment) {
+                          <mat-option [value]="segment.value">{{segment.name}}</mat-option>
                         }
                       </mat-select>
                   </mat-form-field>
@@ -62,9 +62,9 @@
                 <form class="mat-input-form">
                   <mat-form-field class="w-100">
                   <mat-label>Class</mat-label>
-                      <mat-select [formControl]="toppings">
-                        @for (topping of toppingList; track topping) {
-                          <mat-option [value]="topping">{{topping}}</mat-option>
+                      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="classValue">
+                        @for (classS of classList; track classS) {
+                          <mat-option [value]="classS.value">{{classS.name}}</mat-option>
                         }
                       </mat-select>
                   </mat-form-field>
@@ -75,9 +75,9 @@
                 <form class="mat-input-form">
                   <mat-form-field class="w-100">
                   <mat-label>Session</mat-label>
-                      <mat-select [formControl]="toppings">
-                        @for (topping of toppingList; track topping) {
-                          <mat-option [value]="topping">{{topping}}</mat-option>
+                      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="sessionValue">
+                        @for (sessions of sessionList; track sessions) {
+                          <mat-option [value]="sessions.value">{{sessions.name}}</mat-option>
                         }
                       </mat-select>
                   </mat-form-field>
@@ -113,5 +113,5 @@
 
 <mat-dialog-actions>
   <button type="button" class="btn btn-danger" matButton mat-dialog-close>close</button>
-  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>submit</button>
+  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial (click)="onSubmit()">submit</button>
 </mat-dialog-actions>

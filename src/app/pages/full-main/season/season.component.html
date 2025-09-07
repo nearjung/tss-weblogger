@@ -9,9 +9,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-center" (click)="navigateToEvent()">testtt</td>
-          </tr>
+          @for (seasonData of allSeason; track seasonData) {
+            <tr>
+              <td class="text-center" (click)="navigateToEvent()">{{seasonData.seasonName}}</td>
+            </tr>
+          }
         </tbody>
       </table>
 

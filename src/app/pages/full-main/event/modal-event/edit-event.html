@@ -11,9 +11,9 @@
                   <mat-form-field class="w-100">
                     <mat-label>เลือก รายการ</mat-label>
                     <!-- <input matInput class="text-center" value="Thailand Super Pickup D2"> -->
-                      <mat-select [formControl]="toppings">
-                        @for (topping of toppingList; track topping) {
-                          <mat-option [value]="topping">{{topping}}</mat-option>
+                      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="seasonId">
+                        @for (season of seasonList; track season) {
+                          <mat-option [value]="season.value">{{season.name}}</mat-option>
                         }
                       </mat-select>
                   </mat-form-field>
@@ -28,7 +28,7 @@
                 <form class="mat-input-form">
                   <mat-form-field class="w-100">
                   <mat-label>ชื่อ Event</mat-label>
-                    <input matInput class="text-center" value="TSS Bangsaen Grand Prix 2025">
+                    <input matInput class="text-center" [ngModelOptions]="{standalone: true}" [(ngModel)]="eventName">
                   </mat-form-field>
                 </form>
               </div>
@@ -37,9 +37,9 @@
                 <form class="mat-input-form">
                   <mat-form-field class="w-100">
                   <mat-label>เลือก สนาม</mat-label>
-                      <mat-select [formControl]="toppings">
-                        @for (topping of toppingList; track topping) {
-                          <mat-option [value]="topping">{{topping}}</mat-option>
+                      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="circuitName">
+                        @for (maps of mapsList; track maps) {
+                          <mat-option [value]="maps.value">{{maps.name}}</mat-option>
                         }
                       </mat-select>
                   </mat-form-field>
@@ -76,5 +76,5 @@
 
 <mat-dialog-actions>
   <button type="button" class="btn btn-danger" matButton mat-dialog-close>close</button>
-  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>submit</button>
+  <button type="button" class="btn btn-success" matButton mat-dialog-close cdkFocusInitial (click)="onNoClick()">submit</button>
 </mat-dialog-actions>

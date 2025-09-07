@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>แก้ไข Logger</h2>
+<mat-dialog-content>
+        <div class="card card-bg-transparen">
+          <div class="card-body bg-transparen">
+
+            <div class="row">
+              <div class="col-12">
+                <form class="mat-input-form">
+                  <mat-form-field class="w-100">
+                  <mat-label>Logger ID </mat-label>
+                    <input matInput disabled class="text-center" [ngModelOptions]="{standalone: true}" [(ngModel)]="logger_id">
+                  </mat-form-field>
+                </form>
+              </div>
+
+              <div class="col-12">
+                <form class="mat-input-form">
+                  <mat-form-field class="w-100">
+                  <mat-label>หมายเลขรถ </mat-label>
+                    <input matInput class="text-center" [ngModelOptions]="{standalone: true}" [(ngModel)]="car_number">
+                  </mat-form-field>
+                </form>
+              </div>
+
+              <div class="col-12">
+                <form class="mat-input-form">
+                  <mat-form-field class="w-100">
+                  <mat-label>ชื่อนักแข่ง</mat-label>
+                    <input matInput class="text-center" [ngModelOptions]="{standalone: true}" [(ngModel)]="name">
+                  </mat-form-field>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger" matButton mat-dialog-close>close</button>
+  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>submit</button>
+</mat-dialog-actions>
+

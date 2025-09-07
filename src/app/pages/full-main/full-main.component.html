@@ -1,30 +1,66 @@
-<mat-toolbar color="primary">
-    <ng-container>
-        <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span>Data Logger</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon>person</mat-icon>
-        </button>
-    </ng-container>
+<mat-toolbar style="    background-color: #212529;">
+  <ng-container>
+    <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- ถ้าเป็น /pages/dashboard ให้โชว์ฟอร์ม; ถ้าไม่ใช่ ให้โชว์ข้อความ Data Logger -->
+    @if (isDashboard$ | async) {
+      <span>Data Logger</span>
+
+      <div class="container">
+        <div class="row w-100">
+          <mat-chip-set aria-label="Fish selection">
+            <div class="col-6">
+
+                <mat-chip disabled style="width: auto;">Thailand Super Pickup D2</mat-chip>
+                <mat-chip disabled>4 July, 2030</mat-chip>
+
+            </div>
+          </mat-chip-set>
+        </div>
+      </div>
+    } @else {
+      <span>Data Logger</span>
+    }
+
+    <span class="example-spacer"></span>
+
+    <button mat-icon-button class="example-icon" aria-label="profile">
+      <mat-icon>person</mat-icon>
+    </button>
+  </ng-container>
 </mat-toolbar>
 
-<mat-drawer-container autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 60px;">
-    <mat-drawer #drawer mode="over" class="toolbar" style="width: 250px;">
-        <mat-action-list class="side-content">
-            <button (click)="drawer.toggle()" mat-list-item>
-                <div class="row">
-                    <div class="col-2"><img style="border-radius: 0; height: 28px;" src="images/icon/dashboard.png">
-                    </div>
-                    <div class="col-10 pt-1">Dashboard</div>
-                </div>
-            </button>
-        </mat-action-list>
-    </mat-drawer>
-    <div style="margin-top: 20px;">
-        <router-outlet></router-outlet>
-    </div>
-</mat-drawer-container>dashboard.png
+<mat-drawer-container autosize style="position: absolute; right:0; left:0; bottom:0; top:60px;">
+  <mat-drawer #drawer mode="over" class="toolbar" style="width: 250px;">
+    <mat-action-list class="side-content">
+      <button (click)="drawer.toggle(); navigateToDashboard()" mat-list-item>
+        <div class="row">
+          <div class="col-2"><img style="border-radius:0; height:28px;" src="images/icon/logger.png"></div>
+          <div class="col-10 pt-1">Dashboard</div>
+        </div>
+      </button>
+      <button (click)="drawer.toggle(); navigateToListAllSeason()" mat-list-item>
+        <div class="row">
+          <div class="col-2"><img style="border-radius:0; height:28px;" src="images/icon/race.png"></div>
+          <div class="col-10 pt-1">รายการแข่ง ทั้งหมด</div>
+        </div>
+      </button>
+      <button (click)="drawer.toggle(); navigateToAddSeason('0ms','0ms')" mat-list-item>
+        <div class="row">
+          <div class="col-2"><img style="border-radius:0; height:28px;" src="images/icon/dashboard.png"></div>
+          <div class="col-10 pt-1">เพิ่มรายการ</div>
+        </div>
+      </button>
+      <button (click)="drawer.toggle(); navigateToListSettingLogger()" mat-list-item>
+        <div class="row">
+          <div class="col-2"><img style="border-radius:0; height:28px;" src="images/icon/setting-logger.png"></div>
+          <div class="col-10 pt-1">ตั้งค่า Logger</div>
+        </div>
+      </button>
+    </mat-action-list>
+  </mat-drawer>
+
+  <router-outlet></router-outlet>
+</mat-drawer-container>

@@ -1,0 +1,42 @@
+<div style="margin-top: 20px;" class="container">
+  <div class="row">
+    <div class="col">
+
+      <table class="table table-dark table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">Event</th>
+            <th class="text-center">วันที่จัดการแข่ง</th>
+            <th class="text-center">สนาม</th>
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (eventList of allEvent; track eventList) {
+            <tr>
+              <td class="text-center" (click)="navigateToRace()">{{ eventList.eventName }}</td>
+              <td class="text-center">
+                {{ eventList.eventStart| dateRange:eventList.eventEnd :'en-GB' }}
+              </td>
+              <!-- <td class="text-center" >2 - 6 Jun 2025</td> -->
+              <td class="text-center" >{{ eventList.circuitName }}</td>
+              <td class="text-center">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-2">
+                    <img style="border-radius: 0; height: 24px;" src="images/icon/icon_edit.png" (click)="openEdit('0ms', '0ms', eventList.eventId)">
+                  </div>
+                  <div class="col-2">
+                    <img style="border-radius: 0; height: 24px;" src="images/icon/icon_delete.png" (click)="openDelete('0ms', '0ms', eventList.eventId)">
+                  </div>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+

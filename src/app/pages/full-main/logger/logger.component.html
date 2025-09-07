@@ -1,0 +1,190 @@
+<mat-toolbar class="pt-2">
+  <mat-toolbar-row>
+    <div class="container">
+    <div class="row w-100">
+      <div class="col-3 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+          <mat-label>Race</mat-label>
+            <input matInput disabled class="text-center" value="Thailand Super Pickup D2">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-3 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+          <mat-label>รุ่น</mat-label>
+            <input matInput disabled class="text-center" value="Pickup">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-3 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+          <mat-label>Session</mat-label>
+            <input matInput disabled class="text-center" value="Race 5">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-3 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+            <mat-label>ชื่อนักแข่ง</mat-label>
+            <input matInput disabled class="text-center" value="นายทดสอบ TEST01">
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div style="margin-top: 20px;" class="container">
+    <div class="row w-100">
+      <div class="col-2 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+          <mat-label>หมายเลขรถ</mat-label>
+            <input matInput disabled class="text-center" value="8">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-2 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+          <mat-label>Logger ID</mat-label>
+            <input matInput disabled class="text-center" value="TSS001">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-2 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+          <mat-label>Session</mat-label>
+            <input matInput disabled class="text-center" value="Offline">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-2 pt-2">
+        <form class="mat-input-form">
+          <mat-form-field class="w-100">
+          <mat-label>Warning</mat-label>
+            <input matInput disabled class="text-center" value="0">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-4 pt-2">
+        <button type="button" class="btn btn-warning w-100 h-50 text-light">
+          Clear Warning
+        </button>
+      </div>
+    </div>
+
+    <!-- -Map Race ----------------- -->
+    <div class="row w-100">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Racer Detail</h5>
+          </div>
+          <div class="card-body">
+            <div class="form-check form-switch mb-2">
+              <input class="form-check-input" type="checkbox" id="toggleRoutePath" [(ngModel)]="showRoutePath">
+              <label class="form-check-label" for="toggleRoutePath">แสดงเส้นทางการวิ่ง</label>
+            </div>
+            <div class="track-image-container text-center">
+              <svg style="max-width: 800px; max-height: 600px;" viewBox="0 0 800 600">
+                <!-- BG Image -->
+
+                  <image href="images/map-race/outline-map-baangsan.png" style="max-width: 800px; max-height: 600px;"/>
+                @if (this.trackImage) {
+                  <image href="images/map-race/outline-map-baangsan.png" style="max-width: 800px; max-height: 600px;"/>
+                }
+                @else if (!this.trackImage) {
+                  <rect style="max-width: 800px; max-height: 600px;" fill="#ffffff" />
+                }
+                <!-- Route Path -->
+                @if (this.showRoutePath) {
+                  <polyline
+                    [attr.points]="svgPoints"
+                    fill="none"
+                    stroke="#007bff"
+                    stroke-width="2"
+                    opacity="0.9"
+                  />
+                }
+                <!-- Start Point -->
+                @if(this.hasRouteData){
+                  <circle [attr.cx]="startPoint.x" [attr.cy]="startPoint.y" r="10" fill="#28a745" stroke="#fff" stroke-width="3" />
+                  <text [attr.x]="startPoint.x + 15" [attr.y]="startPoint.y" font-size="20" fill="#28a745" font-weight="bold">Start</text>
+                }<!-- End Point -->
+                <!-- <circle *ngIf="hasRouteData" [attr.cx]="endPoint.x" [attr.cy]="endPoint.y" r="10" fill="#dc3545" stroke="#fff" stroke-width="3" />
+                <text *ngIf="hasRouteData" [attr.x]="endPoint.x + 15" [attr.y]="endPoint.y" font-size="20" fill="#dc3545" font-weight="bold">End</text> -->
+              </svg>
+            </div>
+            <div class="mt-3 d-flex align-items-center gap-4 flex-wrap">
+              <!-- <div class="d-flex align-items-center gap-2">
+                <span style="display:inline-block;width:24px;height:8px;background:#007bff;border-radius:4px;"></span>
+                <span>เส้นทางการวิ่ง</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span style="display:inline-block;width:18px;height:18px;background:#28a745;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #28a745;"></span>
+                <span>จุดเริ่มต้น (Start)</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span style="display:inline-block;width:18px;height:18px;background:#dc3545;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #dc3545;"></span>
+                <span>จุดสิ้นสุด (End)</span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -Map Race ----------------- -->
+
+    <!-- ----Apex Chart-------------- -->
+    <div class="row w-100 mt-5">
+            <div class="col-md-12">
+              <div class="card" style="margin-bottom: 0px;">
+                  <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>
+                      Graph Realtime Average AFR
+                      @if(currentPageData.length > 0){
+                        <span class="badge bg-primary ms-2">
+                          Page {{ currentPage }} ({{ currentPageData.length }} records)
+                        </span>
+                      }
+                    </h5>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="showPageDataToggle"
+                          [(ngModel)]="showPageDataOnly"
+                          (change)="onToggleChartMode()">
+                        <label class="form-check-label" for="showPageDataToggle">
+                          <small>Page Data Only</small>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <app-card cardTitle="Area Smooth Chart" [options]="false" class="zoom-container" (mouseenter)="onMouseEnterZoom()" (mouseleave)="onMouseLeaveZoom()">
+                    <apx-chart
+                      [series]="areaSmoothChart.series"
+                      [chart]="areaSmoothChart.chart"
+                      [xaxis]="areaSmoothChart.xaxis"
+                      [stroke]="areaSmoothChart.stroke"
+                      [tooltip]="areaSmoothChart.tooltip"
+                      [dataLabels]="areaSmoothChart.dataLabels"
+                    ></apx-chart>
+                  </app-card> -->
+                  <div class="card-body"></div>
+              </div>
+            </div>
+    </div>
+
+</div>
+

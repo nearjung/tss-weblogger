@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>เพิ่ม Logger</h2>
+<mat-dialog-content>
+        <div class="card card-bg-transparen">
+          <div class="card-body bg-transparen">
+
+            <div class="row">
+              <div class="col-12">
+                <form class="mat-input-form text-light">
+                    <label for="formFile" class="form-label">สามารถ import ไฟล์ .xlsx .doc</label>
+                    <input class="form-control" type="file" id="formFile">
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger" matButton mat-dialog-close>close</button>
+  <button type="button" class="btn btn-success"   matButton mat-dialog-close cdkFocusInitial>submit</button>
+</mat-dialog-actions>
+

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../material.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,4 +10,8 @@ import { MaterialModule } from '../../material.module';
 })
 export class LoginComponent {
 
+  constructor(private router: Router) {
+
+  }
+  navigateToMainPage() { this.router.navigate(['/pages', 'dashboard']); }
 }

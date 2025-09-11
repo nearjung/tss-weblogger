@@ -1,0 +1,1 @@
+import{$b as r,Fb as n,Gb as a,hb as t}from"./chunk-N537WN2U.js";import"./chunk-7CGTOI24.js";var d=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-add-logger"]],decls:2,vars:0,template:function(e,g){e&1&&(n(0,"p"),r(1,"add-logger works!"),a())},encapsulation:2})};export{d as AddLoggerComponent};
